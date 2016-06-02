@@ -1,0 +1,23 @@
+{
+  "name": "test6",
+  "authors": [
+    "loveandhappiness <georg@geladaris.de>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.4.0",
+    "paper-material": "polymerelements/paper-material#^1.0.6",
+    "neon-animation": "polymerelements/neon-animation#^1.2.3",
+    "carbon-route": "polymerelements/carbon-route#^0.8.5"
+  }
+}

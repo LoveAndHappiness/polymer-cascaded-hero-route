@@ -1,0 +1,182 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
+
+<dom-module id="library-grid">
+	<template>
+		<style>
+			:host {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+
+			paper-material {
+				margin: 40px;
+				padding: 40px;
+				width: 90px;
+				height: 80px;
+				display: flex;
+				background: #fff;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+		
+		<template is="dom-repeat" items="{{cards}}">
+			<paper-material class="tile" elevation="1" on-click="_onClick">
+				<h3>{{item.title}}</h3>
+			</paper-material>
+		</template>
+
+	</template>
+	<script>
+		Polymer({
+			is: 'library-grid',
+
+			behaviors: [
+				Polymer.NeonSharedElementAnimatableBehavior
+			],
+
+			properties: {
+			    cards: {
+			    	type: Array,
+			    	notify: true,
+				  	value: function() {
+						return [
+							{
+							    id: 3,
+							    color: 'green',
+							    title: "Janessa Stehr",
+							    excerpt: "YOU manage?' Alice asked. 'We called him a fish)--and rapped loudly at the other, and making quite a new idea to Alice, and she jumped up.",
+							    body: "Cum qui sed quia aliquam recusandae est id. Reprehenderit et at et quam est. Tempora blanditiis consequatur est id assumenda magnam.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 4,
+							    color: 'yellow',
+							    title: "Ruthe Murray",
+							    excerpt: "THIS!' (Sounds of more broken glass.) 'Now tell me, Pat, what's that in some book, but I hadn't to bring but one; Bill's got the.",
+							    body: "Iure magnam voluptatem itaque ea. Impedit iste magnam cupiditate et hic quidem eos id. Ex consequatur mollitia reprehenderit ducimus numquam. Odio ipsum molestias praesentium quia.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 5,
+							    color: 'blue',
+							    title: "Emie Cole",
+							    excerpt: "Dormouse denied nothing, being fast asleep. 'After that,' continued the King. 'I can't explain MYSELF, I'm afraid, but you might knock,.",
+							    body: "Cum aut neque ab autem ullam rem inventore. Ipsa quis deserunt iusto ducimus. Quas error doloribus consequatur occaecati. Commodi quia aspernatur placeat at. Sapiente recusandae nihil asperiores quam. Ratione aliquam aliquam distinctio magnam aliquid.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 6,
+							    color: 'red',
+							    title: "Reagan Goodwin",
+							    excerpt: "The further off from England the nearer is to give the prizes?' quite a new idea to Alice, flinging the baby was howling so much already,.",
+							    body: "Tempora consectetur eum laborum deserunt. Esse officia enim pariatur alias. Modi beatae est placeat nisi illum eaque et. Eos facere natus possimus quidem.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 7,
+							    color: 'yellow',
+							    title: "Prof. Rasheed Hickle DVM",
+							    excerpt: "He says it kills all the jurymen on to himself in an offended tone, and everybody else. 'Leave off that!' screamed the Pigeon. 'I can see.",
+							    body: "Minima cum et et vitae vel officiis. Sit aut quis sunt sit non inventore. Cupiditate et quisquam aut exercitationem molestiae et. Qui odit consequatur qui eligendi et consequatur autem. Nobis vitae neque sed praesentium cum et voluptatem.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 8,
+							    color: 'green',
+							    title: "Noah Gutkowski",
+							    excerpt: "Mock Turtle replied in an angry tone, 'Why, Mary Ann, and be turned out of that dark hall, and wander about among those beds of bright.",
+							    body: "Distinctio voluptatem vel laborum libero. Dolor sed ipsa unde hic consequatur quibusdam odit. Impedit autem dolores incidunt similique. Rerum fuga eius ipsam aliquid sunt rerum. Accusantium voluptas sit eos reiciendis delectus illo. Aspernatur velit asperiores pariatur voluptatum officiis quis.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 9,
+							    color: 'blue',
+							    title: "Hollis Reinger",
+							    excerpt: "Alice, with a great hurry. 'You did!' said the Dodo could not taste theirs, and the three gardeners instantly threw themselves flat upon.",
+							    body: "Voluptatem non recusandae quos consequatur delectus aut ducimus. Sunt sit eius quam quos velit recusandae est accusantium. Omnis eos eveniet non maxime. Qui maxime ab suscipit ut aspernatur. Pariatur aut quas provident sapiente quia alias quas. Nulla non deleniti sequi fugit qui sint earum.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 10,
+							    color: 'red',
+							    title: "Devante Osinski",
+							    excerpt: "Mock Turtle recovered his voice, and, with tears running down his cheeks, he went on, 'that they'd let Dinah stop in the direction it.",
+							    body: "Numquam ut velit voluptatum voluptates assumenda. Id fugit accusamus aliquam voluptates. Atque qui mollitia facere. Nemo ratione placeat architecto voluptate voluptas placeat et.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 11,
+							    color: 'blue',
+							    title: "Kaycee Kiehn",
+							    excerpt: "White Rabbit: it was as much right,' said the Duchess; 'and most things twinkled after that--only the March Hare interrupted in a.",
+							    body: "Aperiam molestiae error id sed. Neque natus quae sed odit animi. Voluptas odit magni rerum repudiandae aperiam libero cum quae. Omnis accusamus nihil quo quo qui. Qui animi nam dolorum debitis totam explicabo.",
+							    created_at: "2016-03-17 07:53:12",
+							    updated_at: "2016-03-17 07:53:12"
+							}, {
+							    id: 12,
+							    color: 'yellow',
+							    title: "Dr. Jaeden Larkin",
+							    excerpt: "IS a Caucus-race?' said Alice; 'you needn't be so proud as all that.' 'With extras?' asked the Gryphon, 'she wants for to know what a Mock.",
+							    body: "Voluptatem sed similique dolorem ut commodi. Commodi repellat est cum doloribus tempore nihil. Corporis quis optio aut quo ea distinctio ad ratione. Enim architecto ea harum doloremque ut quia.",
+							    created_at: "2016-03-17 07:53:13",
+							    updated_at: "2016-03-17 07:53:13"
+							}
+						]
+					}  
+			    },
+
+			    animationConfig: {
+			    	type: Object,
+			    	value: function () {
+			    	    return {
+			    	    	'entry': [{
+			    	    		name: 'cascaded-animation',
+			    	    		animation: 'scale-up-animation'
+			    	    	}, {
+			    	    		name: 'hero-animation',
+			    	    		id: 'hero',
+			    	    		toPage: this
+			    	    	}],
+			    	    	'exit': [{
+			    	    		name: 'hero-animation',
+			    	    		id: 'hero',
+			    	    		fromPage: this
+			    	    	}, {
+			    	    		name: 'fade-out-animation',
+			    	    		node: this
+			    	    	}]
+			    	    }
+			    	}
+			    },
+
+			},
+
+			attached: function () {
+			    this.async(function () {
+			        var nodeList = this.querySelectorAll('.tile');
+			        this.animationConfig['entry'][0].nodes = Array.prototype.slice.call(nodeList);
+			    });
+			},
+
+			_onClick: function (event) {
+				var target = event.target;
+
+				while(target !== this && !target._templateInstance) {
+					target = target.parentNode;
+				}
+
+				this.sharedElements = {
+					'hero': target
+				}
+
+			    this.fire('grid-click', {
+			    	card: event.model.item,
+			    	target: target
+			    });
+			}
+		});
+	</script>
+</dom-module>

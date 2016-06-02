@@ -1,0 +1,85 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="library-grid.html">
+<link rel="import" href="library-card.html">
+
+<dom-module id="library-element">
+	<template>
+		<style>
+			:host {
+				display: block;
+				visibility: hidden;
+			}
+		</style>
+
+		<carbon-location route="{{route}}" use-hash-as-path></carbon-location>
+
+		<carbon-route route="{{route}}" pattern="/:page" data="{{data}}"></carbon-route>
+		<carbon-route route="{{route}}" pattern="/grid" tail="{{gridTail}}"></carbon-route>
+		<carbon-route route="{{route}}" pattern="/card" tail="{{cardTail}}"></carbon-route>
+
+		<neon-animated-pages attr-for-selected="id" selected="{{data.page}}">
+			<library-grid id="grid" on-grid-click="_onGridClick" cards="{{cards}}"></library-grid>
+			<library-card id="card" on-click="_onCardClick" route="{{cardTail}}" cards="{{cards}}" card-data="{{cardData}}"></library-card>
+		</neon-animated-pages>
+		
+	</template>
+	<script>
+	window.addEventListener('WebComponentsReady', function () {
+		Polymer({
+			is: 'library-element',
+
+			behaviors: [
+				Polymer.NeonAnimatableBehavior,
+				Polymer.NeonAnimationRunnerBehavior
+			],
+
+			properties: {
+			    cardData: {
+			    	type: Object,
+			    	// observer: '_cardDataChanged'
+			    },
+
+			    route: {
+			    	type: Object,
+			    	notify: true
+			    },
+
+			    animationConfig: {
+			    	type: Object,
+			    	value: function () {
+			    	    return {
+			    	    	'entry': [{
+			    	    		animatable: this.$['grid'],
+			    	    		type: 'entry'
+			    	    	}]
+			    	    }
+			    	}
+			    }
+			},
+
+			ready: function () {
+			    if (!this.route.path) {
+			    	this.set('route.path', '/grid');
+			    }
+
+			    this.async(function () {
+				    this.style.visibility = 'visible';
+				    this.playAnimation('entry');
+			    });
+			},
+
+			_onGridClick: function (event, data) {
+			    this.set('route.path', '/card/' + data.card.id);
+			},
+
+			_onCardClick: function () {
+			    this.set('route.path', '/grid');
+			},
+
+			_cardDataChanged: function (data) {
+			    // console.log(data);
+			}
+		});
+	});
+	</script>
+</dom-module>

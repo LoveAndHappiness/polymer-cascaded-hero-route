@@ -1,0 +1,109 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="library-card">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+
+			.Item__container {
+				display: flex;
+				justify-content: center;
+			}
+
+			paper-material {
+				background: #fff;
+				margin: 40px;
+				padding: 50px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 480px;
+				height: 280px;
+			}
+		</style>
+
+		<carbon-route route="{{route}}" pattern="/:id" data="{{data}}"></carbon-route>
+
+		<div class="Item__container">
+			<paper-material id="card" elevation="1">
+				<h1>{{card.title}}</h1>
+				<p>{{card.excerpt}}</p>
+				<p>{{card.body}}</p>
+			</paper-material>
+		</div>
+
+	</template>
+	<script>
+		Polymer({
+			is: 'library-card',
+
+			behaviors: [
+				Polymer.NeonSharedElementAnimatableBehavior
+			],
+
+			properties: {
+				route: {
+					type: Object,
+					notify: true,
+					observer: '_cardChanged'
+				},
+
+			    cards: {
+			    	type: Array,
+			    	notify: true
+			    },
+
+			    card: {
+			    	type: Object
+			    },
+
+			    animationConfig: {
+			    	type: Object,
+			    	value: function () {
+			    	    return {
+			    	    	'entry': [{
+			    	    		name: 'hero-animation',
+			    	    		id: 'hero',
+			    	    		toPage: this
+			    	    	}],
+			    	    	'exit': [{
+			    	    		name: 'hero-animation',
+			    	    		id: 'hero',
+			    	    		fromPage: this
+			    	    	}]
+			    	    }
+			    	}
+			    },
+
+			    sharedElements: {
+			    	type: Object,
+			    	value: function () {
+			    	    return {
+			    	    	'hero': this.$.card
+			    	    }
+			    	}
+			    }
+			},
+
+			_cardChanged: function () {
+				this.async(function () {
+					var currentCard;
+
+					// find right card from route and assign to card
+					var that = this;
+					this.cards.forEach(function (card) {
+						if (card.id == that.data.id) {
+							currentCard = card;
+							return currentCard;
+						}
+					});
+
+					this.set('card', currentCard);
+				});
+			}
+		});
+	</script>
+</dom-module>
